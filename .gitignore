@@ -1,0 +1,14 @@
+*.log
+*.tmp
+*.swp
+*.sqlite3
+.DS_Store
+.*.swp
+*.pid
+*.spl
+*.new.spa
+*.new.spd
+*.new.sph
+*.new.spi
+*.new.spm
+*.new.spp

@@ -1,0 +1,77 @@
+require 'thread'
+require 'singleton'
+require 'resolv'
+
+module ApacheLog
+  VERSION = '1.0.0'
+
+  class DataStore
+    attr_accessor :ip_addrs :records
+    def initialize
+      @ip_addrs = {}
+      @records = []
+    end
+  end
+
+  class Reader
+    include Singleton
+
+    @@records = []
+    @@ip_addrs = {}
+    
+    # attr_accessor :file_in
+
+    def parse(file)
+      open(file).each_line do |line|
+        @@records << line
+        ipaddr = $1 if line =~ /^(^\d*\.\d*\.\d*\.\d*)\s.*/
+        if ipaddr then
+          unless @@ip_addrs.has_key? ipaddr
+          #  puts "Already stored"
+          #else
+            puts "Storing #{ipaddr}"
+            @@ip_addrs[ipaddr] = ['', Time.now ]
+          end
+        end
+      end
+      # read file
+      # store lines into array
+      # store ipaddrs into hash
+    end
+
+    def ipaddrs
+      @ipaddrs
+    end
+  end
+
+  class Writer
+    include Singleton
+
+    attr_accessor :file_out
+
+    def write(file)
+      # check to see if array is populated
+      # pull a line and check to see if ipaddr is resolved to name
+      # write a line to output
+    end
+  end
+
+  class Resolver
+    def getname(ipaddr)
+      begin
+        Resolv.getname(ipaddr)
+      rescue
+        "#{ipaddr}.unresolvable.tld"
+      end
+    end
+
+    #def spawn_resolvers
+    #  pool = ThreadPool.new(N) # up to N threads
+    #    ipaddrs.each do |ipaddr|
+    #      pool.process { getname(ipaddr) }
+    #    end
+    #  end
+    #end
+  end
+end
+

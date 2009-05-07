@@ -1,0 +1,12 @@
+queue = Queue.new
+
+20.times do
+  threads.push Thread.new do
+    until queue.empty?
+      work = queue.pop
+      do work
+    end
+  end
+end
+
+threads.join
