@@ -2,23 +2,21 @@ require 'thread'
 require 'resolv'
 
 class ApacheLog
-  VERSION='1.0.0'
+  VERSION='1.0.2'
 
-  attr_accessor :records_queue, :ipaddrs_queue, :domains_hash
+  attr_accessor :records_q, :ipaddrs_q, :domains_hash
 
   def initialize
-    @records_queue = []
-    @ipaddrs_queue = []
+    @records_q = Queue.new
+    @ipaddrs_q = Queue.new
     @domains_hash = {}
   end
 
   def log_reader(filename)
     # handle bad file?
     open(filename, "r").each_line do |line|
-      @records_queue << line.chomp
-      if line =~ /^(\d*\.\d*\.\d*\.\d*)\s*/ then
-        @ipaddrs_queue << $1 unless @ipaddrs_queue.include? $1
-      end
+      @records_q << line.chomp
+      @ipaddrs_q << $1 if line =~ /^(\d*\.\d*\.\d*\.\d*)\s*/
     end
   end
 
@@ -31,7 +29,8 @@ class ApacheLog
   end
 
   def resolver
-    @ipaddrs_queue.each do |ipaddr|
+    until @ipaddrs_q.empty? do
+      ipaddr = @ipaddrs_q.shift
       @domains_hash[ipaddr] = [getname(ipaddr), Time.now]
     end
   end
@@ -52,6 +51,14 @@ class ApacheLog
   end
 
   def log_writer(file)
+    # raise panic if @domains_hash.empty?
+    # until @records_q.empty?
+    #   line = @records_q.shift
+    #   ipaddr = $1 if line =~ /^(\d*\.\d*\.\d*\.\d*\s*)/
+    #   tld = domains_hash[ipaddr][0]
+    #   s
+    #   write line to file
+    # end
   end
 end
 
@@ -61,27 +68,21 @@ end
 
 limit = 1
 
-mutex = Mutex.new
+# mutex = Mutex.new zenspider sez not needed
 
 records = Queue.new
 ip_addrs = Queue.new
 
 threads = [
   Thread.new do
-    mutex.synchronize {
-      @al.log_reader("input.log", records, ip_addrs)
-    }
+    @al.log_reader("input.log")
   end,
   (1..limit).each do
     Thread.new do
-      mutex.synchronize {
-        @al.resolver(ip_addrs)
-      }
+      @al.resolver
     end
   end,
   Thread.new do
-    mutex.synchronize {
-      @al.log_writer("processed.log")
-    }
+    @al.log_writer("processed.log")
   end
 ]

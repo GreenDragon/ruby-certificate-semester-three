@@ -29,7 +29,11 @@ class TestApacheLog < Test::Unit::TestCase
 
   def test_log_reader_parses_file
     @parser.log_reader("test.log")
-    assert_equal @parser.records_queue, [
+    actual_records, actual_ipaddrs = [], []
+    actual_records << @parser.records_q.shift until @parser.records_q.empty?
+    actual_ipaddrs << @parser.ipaddrs_q.shift until @parser.ipaddrs_q.empty?
+    actual_ipaddrs.sort!.uniq!
+    assert_equal actual_records, [
 "208.77.188.166 - - [29/Apr/2009:16:07:38 -0700] \"GET / HTTP/1.1\" 200 1342",
 "75.119.201.189 - - [29/Apr/2009:16:07:44 -0700] \"GET /favicon.ico HTTP/1.1\" 200 1406",
 "75.146.57.34 - - [29/Apr/2009:16:08:38 -0700] \"GET / HTTP/1.1\" 304 -",
@@ -43,13 +47,15 @@ class TestApacheLog < Test::Unit::TestCase
 "75.146.57.34 - - [29/Apr/2009:16:13:55 -0700] \"GET /stylesheets/main.css?1240264242 HTTP/1.1\" 200 2968",
 "74.125.67.100 - - [29/Apr/2009:16:13:55 -0700] \"GET /stylesheets/home.css?1240264242 HTTP/1.1\" 200 7829"
     ]
-    assert_equal @parser.ipaddrs_queue, [
-"208.77.188.166", "75.119.201.189", "75.146.57.34", "74.125.67.100"
+    assert_equal actual_ipaddrs, [
+"208.77.188.166", "74.125.67.100", "75.119.201.189", "75.146.57.34"
     ]
   end
 
   def test_resolver_converts_ipaddrs_array
     @parser.log_reader("test.log")
+    assert_equal @parser.ipaddrs_q.size, 12
+    assert_equal @parser.records_q.size, 12
     @parser.resolver
     assert_equal @parser.domains_hash.map { |k,v| [ k, v[0] ] }.sort, [
   ["208.77.188.166", "www.example.com"],
@@ -62,9 +68,9 @@ class TestApacheLog < Test::Unit::TestCase
   def test_marshalling_domain_name_lookups
     @parser.log_reader("test.log")
     @parser.resolver
-    File.delete("domain.db") if File.exist?("domain.db")
-    @parser.marshal("domain.db", "w")
-    actual = @parser.marshal("domain.db")
+    File.delete("domains.db") if File.exist?("domains.db")
+    @parser.marshal("domains.db", "w")
+    actual = @parser.marshal("domains.db")
 
     assert_equal @parser.domains_hash, actual
   end
