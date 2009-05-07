@@ -8,9 +8,8 @@ class TestApacheLog < Test::Unit::TestCase
   def setup
     @parser = ApacheLog.new
 
-    @records = []
-    @ipaddrs = []
-    @lookups = {}
+    @test_log = "test.log"
+    @domains_db = "domains.db"
   end
 
   def test_getname_resolve_ipaddr_to_fqdn
@@ -28,7 +27,7 @@ class TestApacheLog < Test::Unit::TestCase
   end
 
   def test_log_reader_parses_file
-    @parser.log_reader("test.log")
+    @parser.log_reader(@test_log)
     actual_records, actual_ipaddrs = [], []
     actual_records << @parser.records_q.shift until @parser.records_q.empty?
     actual_ipaddrs << @parser.ipaddrs_q.shift until @parser.ipaddrs_q.empty?
@@ -53,7 +52,7 @@ class TestApacheLog < Test::Unit::TestCase
   end
 
   def test_resolver_converts_ipaddrs_array
-    @parser.log_reader("test.log")
+    @parser.log_reader(@test_log)
     assert_equal @parser.ipaddrs_q.size, 12
     assert_equal @parser.records_q.size, 12
     @parser.resolver
@@ -66,11 +65,11 @@ class TestApacheLog < Test::Unit::TestCase
   end
 
   def test_marshalling_domain_name_lookups
-    @parser.log_reader("test.log")
+    @parser.log_reader(@test_log)
     @parser.resolver
-    File.delete("domains.db") if File.exist?("domains.db")
-    @parser.marshal("domains.db", "w")
-    actual = @parser.marshal("domains.db")
+    File.delete(@domains_db) if File.exist?(@domains_db)
+    @parser.marshal(@domains_db, "w")
+    actual = @parser.marshal(@domains_db)
 
     assert_equal @parser.domains_hash, actual
   end
