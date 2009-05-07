@@ -2,7 +2,7 @@ require 'thread'
 require 'resolv'
 
 class ApacheLog
-  VERSION='1.0.2'
+  VERSION='1.0.3'
 
   attr_accessor :records_q, :ipaddrs_q, :domains_hash
 
@@ -16,8 +16,13 @@ class ApacheLog
     # handle bad file?
     open(filename, "r").each_line do |line|
       @records_q << line.chomp
-      @ipaddrs_q << $1 if line =~ /^(\d*\.\d*\.\d*\.\d*)\s*/
+      # too clever? feels like dup code
+      @ipaddrs_q << get_ipaddr(line) if get_ipaddr(line)
     end
+  end
+
+  def get_ipaddr(string)
+    ipaddr = $1 if string =~ /^((\d{1,3}\.){3}\d{1,3})\s/
   end
 
   def getname(ipaddr)
