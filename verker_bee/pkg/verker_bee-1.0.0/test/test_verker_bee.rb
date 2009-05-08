@@ -69,12 +69,6 @@ class TestVerkerBee < Test::Unit::TestCase
     assert_equal "Crush, Kill, Destroy!", @bee.run(:panic)
   end
 
-  def test_work_raises_exception_when_missing_block
-    assert_raise ArgumentError do
-      @bee.work :h1n1, :zomg
-    end
-  end
-
   def test_work_accepts_many_tasks
     assert_block do
       @bee.work :h1n1, :swine_flu, :run_runner_run do
@@ -226,29 +220,5 @@ class TestVerkerBee < Test::Unit::TestCase
     VerkerBee.run :sammich
 
     assert_equal @output.string, "running sammich\n  running meat\n    running clean\n** cleaning!\n** meat\n  running bread\n    not running clean - already met dependency\n** bread\n** sammich!\n"
-  end
-
-  def test_ze_class_homework_api_display_assignment_to_screen
-    $stdout = STDOUT
-    puts ""
-    VerkerBee.recipe do
-      work :sammich, :meat, :bread do
-        puts "** sammich!"
-      end
-
-      work :meat, :clean do
-        puts "** meat"
-      end
-
-      work :bread, :clean do
-        puts "** bread"
-      end
-
-      work :clean do
-        puts "** cleaning!"
-      end
-    end
-
-    VerkerBee.run :sammich
   end
 end
