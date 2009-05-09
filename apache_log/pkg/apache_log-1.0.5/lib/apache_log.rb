@@ -3,7 +3,7 @@ require 'resolv'
 require 'tmpdir'
 
 class ApacheLog
-  VERSION='1.0.6'
+  VERSION='1.0.7'
 
   MAX_THREADS = 5
   MAX_CACHE_AGE = (24 * 60 * 60)
@@ -31,7 +31,7 @@ class ApacheLog
     unless File.exists?(@log_file)
       raise ArgumentError, "#{@log_file} is invalid"
     end
-    open(@log_file, "r").each_line do |line|
+    File.open(@log_file, "r").each_line do |line|
       @records_q << line.chomp
       @ipaddrs_q << get_ipaddr(line) if get_ipaddr(line)
     end
@@ -62,14 +62,14 @@ class ApacheLog
 
   def save_cache
     Dir.chdir(Dir::tmpdir) do
-      open(@cache_db, "w") { |f| Marshal.dump(@domains_hash, f) }
+      File.open(@cache_db, "w") { |f| Marshal.dump(@domains_hash, f) }
     end
   end
 
   def load_cache
     Dir.chdir(Dir::tmpdir) do
       if File.exist?(@cache_db)
-        open(@cache_db, "r") { |f| Marshal.load(f) } if File.exists?(@cache_db)
+        File.open(@cache_db, "r") { |f| Marshal.load(f) } if File.exists?(@cache_db)
       end
     end
   end
