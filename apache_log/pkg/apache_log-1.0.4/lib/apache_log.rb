@@ -3,7 +3,7 @@ require 'resolv'
 require 'tmpdir'
 
 class ApacheLog
-  VERSION='1.0.4'
+  VERSION='1.0.5'
 
   MAX_THREADS = 5
   MAX_CACHE_AGE = (24 * 60 * 60)
@@ -28,10 +28,13 @@ class ApacheLog
   end
 
   def log_reader
-    # handle bad file?
-    open(@log_file, "r").each_line do |line|
-      @records_q << line.chomp
-      @ipaddrs_q << get_ipaddr(line) if get_ipaddr(line)
+    if File.exists?(@log_file) then
+      open(@log_file, "r").each_line do |line|
+        @records_q << line.chomp
+        @ipaddrs_q << get_ipaddr(line) if get_ipaddr(line)
+      end
+    else
+      raise ArgumentError, "#{@logfile} is invalid"
     end
   end
 

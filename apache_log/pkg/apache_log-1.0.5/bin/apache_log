@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+$: << 'lib'
+$: << '../lib'
+
+require 'apache_log'
+require 'optparse'
+
+class ApacheLogUtility
+  def initialize
+    @parser = ApacheLog.new
+  end
+
+  def parse_options
+    option_parser = OptionParser.new do |options|
+      options.banner = "Usage: #{$0} [-t threads] apache_log.file"
+
+      options.on("-t threads", "Number of resolver threads: Default is #{ApacheLog::MAX_THREADS}") do |t|
+        @parser.num_threads = t.to_i
+      end
+    end
+
+    options =   begin option_parser.parse ARGV
+                rescue OptionParser::InvalidOption => error
+                puts error
+                puts option_parser
+                exit 1
+                end
+
+    @parser.log_file = options.pop
+
+    unless(@parser.log_file && options.empty?)
+      puts option_parser
+      exit 1
+    end
+  end
+
+  def run
+    parse_options
+    @parser.run
+    @parser.log_writer
+  end
+end
+
+cli = ApacheLogUtility.new
+cli.run

@@ -39,6 +39,13 @@ class TestApacheLog < Test::Unit::TestCase
     assert_equal host1, "127.0.0.66.unresolveable.tld"
   end
 
+  def test_log_reader_carps_on_bad_files
+    @parser.log_file = "bogus.log"
+    assert_raise ArgumentError do
+      @parser.log_reader
+    end
+  end
+
   def test_log_reader_parses_file
     @parser.log_reader
     actual_records, actual_ipaddrs = [], []
