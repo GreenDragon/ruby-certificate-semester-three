@@ -3,7 +3,7 @@ require 'resolv'
 require 'tmpdir'
 
 class ApacheLog
-  VERSION='1.0.5'
+  VERSION='1.0.6'
 
   MAX_THREADS = 5
   MAX_CACHE_AGE = (24 * 60 * 60)
@@ -28,13 +28,12 @@ class ApacheLog
   end
 
   def log_reader
-    if File.exists?(@log_file) then
-      open(@log_file, "r").each_line do |line|
-        @records_q << line.chomp
-        @ipaddrs_q << get_ipaddr(line) if get_ipaddr(line)
-      end
-    else
-      raise ArgumentError, "#{@logfile} is invalid"
+    unless File.exists?(@log_file)
+      raise ArgumentError, "#{@log_file} is invalid"
+    end
+    open(@log_file, "r").each_line do |line|
+      @records_q << line.chomp
+      @ipaddrs_q << get_ipaddr(line) if get_ipaddr(line)
     end
   end
 
@@ -96,12 +95,11 @@ class ApacheLog
   def log_writer
     raise ArgumentError, "Missing Domain Lookup Hash" if @domains_hash.empty?
     raise ArgumentError, "Missing Records Array" if @records_q.empty?
-    until @records_q.empty?
+    until @records_q.empty? do
       line = @records_q.shift
       ipaddr = get_ipaddr(line)
       name = @domains_hash[ipaddr][0]
-      line.gsub!(/^#{ipaddr}/, name)
-      @write_q << line
+      @write_q << line.gsub(/^#{ipaddr}/, name)
     end
     File.open(@log_file + ".translated", 'w') do |f|
       @write_q.each { |line| f.puts line }
