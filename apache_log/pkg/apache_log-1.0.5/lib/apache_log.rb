@@ -3,7 +3,7 @@ require 'resolv'
 require 'tmpdir'
 
 class ApacheLog
-  VERSION='1.0.7'
+  VERSION='1.0.8'
 
   MAX_THREADS = 5
   MAX_CACHE_AGE = (24 * 60 * 60)
@@ -69,7 +69,7 @@ class ApacheLog
   def load_cache
     Dir.chdir(Dir::tmpdir) do
       if File.exist?(@cache_db)
-        File.open(@cache_db, "r") { |f| Marshal.load(f) } if File.exists?(@cache_db)
+        File.open(@cache_db, "r") { |f| Marshal.load(f) }
       end
     end
   end
