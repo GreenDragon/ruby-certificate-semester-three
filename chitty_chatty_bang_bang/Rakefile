@@ -1,0 +1,12 @@
+# -*- ruby -*-
+
+require 'rubygems'
+require 'hoe'
+require './lib/chitty_chatty_bang_bang.rb'
+
+Hoe.new('chitty_chatty_bang_bang', ChittyChattyBangBang::VERSION) do |p|
+  # p.rubyforge_name = 'chitty_chatty_bang_bangx' # if different than lowercase project name
+  # p.developer('johnhowe', 'johnhowe@arashi.com')
+end
+
+# vim: syntax=Ruby

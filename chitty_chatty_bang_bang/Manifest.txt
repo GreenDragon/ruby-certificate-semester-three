@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/chitty_chatty_bang_bang
+lib/chitty_chatty_bang_bang.rb
+test/test_chitty_chatty_bang_bang.rb
