@@ -1,0 +1,12 @@
+# -*- ruby -*-
+
+require 'rubygems'
+require 'hoe'
+require './lib/http_server.rb'
+
+Hoe.new('http_server', HttpServer::VERSION) do |p|
+  # p.rubyforge_name = 'http_serverx' # if different than lowercase project name
+  p.developer('johnhowe', 'johnhowe@arashi.com')
+end
+
+# vim: syntax=Ruby
