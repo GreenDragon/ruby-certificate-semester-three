@@ -13,7 +13,7 @@ one:
   email: MyString
   known_months: 1
   known_years: 1
-  what_capcity: MyText
+  what_capacity: MyText
   working_with_children: MyText
   any_concerns: MyText
   role_model: 1
@@ -37,7 +37,7 @@ two:
   email: MyString
   known_months: 1
   known_years: 1
-  what_capcity: MyText
+  what_capacity: MyText
   working_with_children: MyText
   any_concerns: MyText
   role_model: 1

@@ -4,7 +4,7 @@ development:
   adapter: mysql
   database: mentors_development
   encoding: utf8
-  username: mentors_app
+  username: root
   password: 
 
 # Warning: The database defined as "test" will be erased and
@@ -13,7 +13,7 @@ development:
 test:
   adapter: mysql
   database: mentors_test
-  username: mentors_app
+  username: root
   encoding: utf8
   password: 
 
@@ -21,5 +21,5 @@ production:
   adapter: mysql
   database: mentors_production
   encoding: utf8
-  username: mentors_app
+  username: root
   password: 

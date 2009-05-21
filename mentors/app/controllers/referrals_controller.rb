@@ -1,15 +1,4 @@
 class ReferralsController < ApplicationController
-  # GET /referrals
-  # GET /referrals.xml
-  #def index
-  #  @referrals = Referral.all
-
-  #  respond_to do |format|
-  #    format.html # index.html.erb
-  #    format.xml  { render :xml => @referrals }
-  #  end
-  #end
-
   # GET /referrals/1
   # GET /referrals/1.xml
   def show
@@ -21,6 +10,7 @@ class ReferralsController < ApplicationController
     end
   end
 
+  # GET /referrals
   # GET /referrals/new
   # GET /referrals/new.xml
   def new
@@ -44,12 +34,6 @@ class ReferralsController < ApplicationController
 
   alias :index :new
 
-
-  # GET /referrals/1/edit
-  def edit
-    @referral = Referral.find(params[:id])
-  end
-
   # POST /referrals
   # POST /referrals.xml
   def create
@@ -65,6 +49,13 @@ class ReferralsController < ApplicationController
         format.xml  { render :xml => @referral.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  # These methods need to be wrapped by authentication
+
+  # GET /referrals/1/edit
+  def edit
+    @referral = Referral.find(params[:id])
   end
 
   # PUT /referrals/1

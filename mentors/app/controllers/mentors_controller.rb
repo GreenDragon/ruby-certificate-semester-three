@@ -1,17 +1,4 @@
 class MentorsController < ApplicationController
-  # GET /mentors
-  # GET /mentors.xml
-  #def index
-  #  @mentor = Mentor.new
-  #  @mentor.city = "Seattle"
-	#  @mentor.state = "WA"
-	
-  #  respond_to do |format|
-  #    format.html # index.html.erb
-  #    format.xml  { render :xml => @mentors }
-  #  end
-  #end
-
   # GET /mentors/1
   # GET /mentors/1.xml
   def show
@@ -23,6 +10,7 @@ class MentorsController < ApplicationController
     end
   end
 
+  # GET /mentors
   # GET /mentors/new
   # GET /mentors/new.xml
   def new
@@ -37,11 +25,6 @@ class MentorsController < ApplicationController
   end
 
   alias :index :new
-
-  # GET /mentors/1/edit
-  def edit
-    @mentor = Mentor.find(params[:id])
-  end
 
   # POST /mentors
   # POST /mentors.xml
@@ -58,6 +41,13 @@ class MentorsController < ApplicationController
         format.xml  { render :xml => @mentor.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  # Need to wrap these modes with authentication
+
+  # GET /mentors/1/edit
+  def edit
+    @mentor = Mentor.find(params[:id])
   end
 
   # PUT /mentors/1

@@ -1,0 +1,100 @@
+<h1>Editing referral</h1>
+
+<% form_for(@referral) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :reference_for %><br />
+    <%= f.text_field :reference_for %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :zipcode %><br />
+    <%= f.text_field :zipcode %>
+  </p>
+  <p>
+    <%= f.label :day_phone %><br />
+    <%= f.text_field :day_phone %>
+  </p>
+  <p>
+    <%= f.label :evening_phone %><br />
+    <%= f.text_field :evening_phone %>
+  </p>
+  <p>
+    <%= f.label :cell_phone %><br />
+    <%= f.text_field :cell_phone %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :known_months %><br />
+    <%= f.text_field :known_months %>
+  </p>
+  <p>
+    <%= f.label :known_years %><br />
+    <%= f.text_field :known_years %>
+  </p>
+  <p>
+    <%= f.label :what_capacity %><br />
+    <%= f.text_area :what_capacity %>
+  </p>
+  <p>
+    <%= f.label :working_with_children %><br />
+    <%= f.text_area :working_with_children %>
+  </p>
+  <p>
+    <%= f.label :any_concerns %><br />
+    <%= f.text_area :any_concerns %>
+  </p>
+  <p>
+    <%= f.label :role_model %><br />
+    <%= f.text_field :role_model %>
+  </p>
+  <p>
+    <%= f.label :reliability %><br />
+    <%= f.text_field :reliability %>
+  </p>
+  <p>
+    <%= f.label :creativity %><br />
+    <%= f.text_field :creativity %>
+  </p>
+  <p>
+    <%= f.label :enthusiasm %><br />
+    <%= f.text_field :enthusiasm %>
+  </p>
+  <p>
+    <%= f.label :cultural_awareness %><br />
+    <%= f.text_field :cultural_awareness %>
+  </p>
+  <p>
+    <%= f.label :patience %><br />
+    <%= f.text_field :patience %>
+  </p>
+  <p>
+    <%= f.label :additional_comments %><br />
+    <%= f.text_area :additional_comments %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @referral %> |
+<%= link_to 'Back', referrals_path %>

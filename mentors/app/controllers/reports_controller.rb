@@ -1,5 +1,4 @@
-# moved to environment.rb
-# require "spreadsheet/excel"
+require "spreadsheet/excel"
 include Spreadsheet
 
 class ReportsController < ApplicationController

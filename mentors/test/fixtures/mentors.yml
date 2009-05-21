@@ -1,10 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  address: MyString
-  city: MyString
-  zipcode: MyString
+  name: First Last
+  address: 2706 S. Jackson Street
+  city: Seattle
+  state: WA
+  zipcode: 98144
   home_phone: MyString
   cell_phone: MyString
   email: MyString
@@ -48,6 +49,7 @@ two:
   name: MyString
   address: MyString
   city: MyString
+  state: WA
   zipcode: MyString
   home_phone: MyString
   cell_phone: MyString

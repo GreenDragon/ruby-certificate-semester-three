@@ -20,7 +20,12 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "geokit"
-  config.gem "spreadsheet-excel"
+  config.gem "thoughtbot-factory_girl",
+             :lib    => "factory_girl",
+             :source => "http://gems.github.com"
+
+  # OK WTF, maybe I replace you with spreadsheet
+  # config.gem "spreadsheet/excel"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
