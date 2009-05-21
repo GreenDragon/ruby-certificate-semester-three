@@ -1,0 +1,126 @@
+<h1>Seattle Girls' School Mentor Referral Form</h1>
+
+<p><strong>Hello, thank you for serving as a referral for the person who has applied for a volunteer mentor position with the Seattle Girls' School.</strong></p>
+<p><strong>The program partners one volunteer mentor with a 6th or 7th grade girl at the Seattle Girls' School.</strong></p>
+
+<hr>
+
+<% form_for(@referral) do |f| %>
+  <%= f.error_messages %>
+
+<table>
+  <tr>
+    <th>Person's Name Mentor Referral is For</th>
+    <td><%= f.text_field :reference_for %></td>
+  </tr>
+
+  <tr>
+    <th>Your Name</th>
+    <td><%= f.text_field :name %></td>
+  </tr
+  <tr>
+    <th>Address</th>
+    <td><%= f.text_field :address %></td>
+  </tr>
+  <tr>
+    <th>City</th>
+    <td><%= f.text_field :city %></td>
+  </tr>
+  <tr>
+    <th>State</th>
+    <td><%= f.text_field :state %></td>
+  </tr>
+  <tr>
+    <th>Zip Code</th>
+    <td><%= f.text_field :zipcode %></td>
+  </tr>
+  <tr>
+    <th>Day Phone #</th>
+    <td><%= f.text_field :day_phone %></td>
+  </tr>
+  <tr>
+    <th>Evening Phone #</th>
+    <td><%= f.text_field :evening_phone %></td>
+  </tr>
+  <tr>
+    <th>Cell Phone #</th>
+    <td><%= f.text_field :cell_phone %></td>
+  </tr>
+  <tr>
+    <th>E-Mail</th>
+    <td><%= f.text_field :email %></td>
+  </tr>
+</table>
+
+<hr>
+
+<p><strong>How long have you known the applicant?</strong></p>
+
+<table>
+  <tr>
+    <th>Years Known?</th>
+    <td><%= select_tag "referral[known_years]", options_for_select([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50], @referral.known_years.to_i)%></td>
+  </tr>
+  <tr>
+    <th>Months Known?</th>
+    <td><%= select_tag "referral[known_months]", options_for_select([0,1,2,3,4,5,6,7,8,9,10,11], @referral.known_months.to_i) %>
+  </tr>
+</table>
+
+<p><strong>In what capacity have you know the applicant? ( friend, co-worker, other... )</strong></p>
+<%= f.text_area :what_capacity, :cols => 70, :rows => 2 %>
+
+<hr>
+
+<p><strong>Have you ever seen this applicant work with children? If so please explain it what capacity.</strong></p>
+<%= f.text_area :working_with_children, :cols => 70, :rows => 2 %>
+
+<p><strong>Do you have any concerns about the applicant working one-on-one with a child? If yes, please elaborate.</strong></p>
+<%= f.text_area :any_concerns, :cols => 70, :rows => 2 %>
+
+<hr>
+
+<p><strong>Please rate the application on a scale of 1 to 5 ( one being the lowest, and five being the highest ) on the following charateristics:</strong></p>
+
+<table>
+  <tr>
+    <th>Being a Role Model</th>
+    <td><%= select_tag "referral[role_model]", options_for_select([1,2,3,4,5], @referral.role_model.to_i) %></td>
+  </tr>
+  <tr>
+    <th>Reliability</th>
+    <td><%= select_tag "referral[reliability]", options_for_select([1,2,3,4,5], @referral.reliability.to_i) %></td>
+  </tr>
+  <tr>
+    <th>Creativity</th>
+    <td><%= select_tag "referral[creativity]", options_for_select([1,2,3,4,5], @referral.creativity.to_i) %></td>
+  </tr>
+  <tr>
+    <th>Enthusiasm</th>
+    <td><%= select_tag "referral[enthusiasm]", options_for_select([1,2,3,4,5], @referral.enthusiasm.to_i) %></td>
+  </tr>
+  <tr>
+    <th>Ability to work well with people from other cultures</th>
+    <td><%= select_tag "referral[cultural_awareness]", options_for_select([1,2,3,4,5], @referral.cultural_awareness.to_i) %></td>
+  </tr>
+  <tr>
+    <th>Patience</th>
+    <td><%= select_tag "referral[patience]", options_for_select([1,2,3,4,5], @referral.patience.to_i) %></td>
+  </tr>
+</table>
+
+<hr>
+
+<p><strong>Please provide any additional information which may be revelant to this applicant becoming a Seattle Girls' School mentor:</strong></p>
+<%= f.text_area :additional_comments, :cols => 70, :rows => 2 %>
+
+<p>&nbsp;</p>
+
+<p><%= recaptcha_tags %></p>
+
+<p>&nbsp;</p>
+
+<%= f.submit 'Create' %>
+
+<% end %>
+

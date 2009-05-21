@@ -1,0 +1,49 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  reference_for: MyString
+  name: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  zipcode: MyString
+  day_phone: MyString
+  evening_phone: MyString
+  cell_phone: MyString
+  email: MyString
+  known_months: 1
+  known_years: 1
+  what_capcity: MyText
+  working_with_children: MyText
+  any_concerns: MyText
+  role_model: 1
+  reliability: 1
+  creativity: 1
+  enthusiasm: 1
+  cultural_awareness: 1
+  patience: 1
+  additional_comments: MyText
+
+two:
+  reference_for: MyString
+  name: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  zipcode: MyString
+  day_phone: MyString
+  evening_phone: MyString
+  cell_phone: MyString
+  email: MyString
+  known_months: 1
+  known_years: 1
+  what_capcity: MyText
+  working_with_children: MyText
+  any_concerns: MyText
+  role_model: 1
+  reliability: 1
+  creativity: 1
+  enthusiasm: 1
+  cultural_awareness: 1
+  patience: 1
+  additional_comments: MyText

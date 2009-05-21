@@ -1,0 +1,180 @@
+<h1>Editing mentor</h1>
+
+<% form_for(@mentor) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :zipcode %><br />
+    <%= f.text_field :zipcode %>
+  </p>
+  <p>
+    <%= f.label :home_phone %><br />
+    <%= f.text_field :home_phone %>
+  </p>
+  <p>
+    <%= f.label :cell_phone %><br />
+    <%= f.text_field :cell_phone %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :race %><br />
+    <%= f.text_field :race %>
+  </p>
+  <p>
+    <%= f.label :age %><br />
+    <%= f.text_field :age %>
+  </p>
+  <p>
+    <%= f.label :time_afternoon %><br />
+    <%= f.check_box :time_afternoon %>
+  </p>
+  <p>
+    <%= f.label :time_evening %><br />
+    <%= f.check_box :time_evening %>
+  </p>
+  <p>
+    <%= f.label :time_weekends %><br />
+    <%= f.check_box :time_weekends %>
+  </p>
+  <p>
+    <%= f.label :exp_org_1 %><br />
+    <%= f.text_field :exp_org_1 %>
+  </p>
+  <p>
+    <%= f.label :exp_title_1 %><br />
+    <%= f.text_field :exp_title_1 %>
+  </p>
+  <p>
+    <%= f.label :exp_start_1 %><br />
+    <%= f.datetime_select :exp_start_1 %>
+  </p>
+  <p>
+    <%= f.label :exp_stop_1 %><br />
+    <%= f.datetime_select :exp_stop_1 %>
+  </p>
+  <p>
+    <%= f.label :exp_org_2 %><br />
+    <%= f.text_field :exp_org_2 %>
+  </p>
+  <p>
+    <%= f.label :exp_title_2 %><br />
+    <%= f.text_field :exp_title_2 %>
+  </p>
+  <p>
+    <%= f.label :exp_start_2 %><br />
+    <%= f.datetime_select :exp_start_2 %>
+  </p>
+  <p>
+    <%= f.label :exp_stop_2 %><br />
+    <%= f.datetime_select :exp_stop_2 %>
+  </p>
+  <p>
+    <%= f.label :exp_org_3 %><br />
+    <%= f.text_field :exp_org_3 %>
+  </p>
+  <p>
+    <%= f.label :exp_title_3 %><br />
+    <%= f.text_field :exp_title_3 %>
+  </p>
+  <p>
+    <%= f.label :exp_start_3 %><br />
+    <%= f.datetime_select :exp_start_3 %>
+  </p>
+  <p>
+    <%= f.label :exp_stop_3 %><br />
+    <%= f.datetime_select :exp_stop_3 %>
+  </p>
+  <p>
+    <%= f.label :exp_org_4 %><br />
+    <%= f.text_field :exp_org_4 %>
+  </p>
+  <p>
+    <%= f.label :exp_title_4 %><br />
+    <%= f.text_field :exp_title_4 %>
+  </p>
+  <p>
+    <%= f.label :exp_start_4 %><br />
+    <%= f.datetime_select :exp_start_4 %>
+  </p>
+  <p>
+    <%= f.label :exp_stop_4 %><br />
+    <%= f.datetime_select :exp_stop_4 %>
+  </p>
+  <p>
+    <%= f.label :worked_with_middle_school %><br />
+    <%= f.text_area :worked_with_middle_school %>
+  </p>
+  <p>
+    <%= f.label :two_activities %><br />
+    <%= f.text_area :two_activities %>
+  </p>
+  <p>
+    <%= f.label :helpful_support %><br />
+    <%= f.text_area :helpful_support %>
+  </p>
+  <p>
+    <%= f.label :seattle_location %><br />
+    <%= f.text_field :seattle_location %>
+  </p>
+  <p>
+    <%= f.label :brothers_sisters %><br />
+    <%= f.text_field :brothers_sisters %>
+  </p>
+  <p>
+    <%= f.label :have_children %><br />
+    <%= f.text_field :have_children %>
+  </p>
+  <p>
+    <%= f.label :have_pets %><br />
+    <%= f.text_field :have_pets %>
+  </p>
+  <p>
+    <%= f.label :fav_subject %><br />
+    <%= f.text_area :fav_subject %>
+  </p>
+  <p>
+    <%= f.label :hobbies %><br />
+    <%= f.text_area :hobbies %>
+  </p>
+  <p>
+    <%= f.label :work_exp_mentee %><br />
+    <%= f.text_area :work_exp_mentee %>
+  </p>
+  <p>
+    <%= f.label :new_activities_mentee %><br />
+    <%= f.text_area :new_activities_mentee %>
+  </p>
+  <p>
+    <%= f.label :describe_yourself %><br />
+    <%= f.text_area :describe_yourself %>
+  </p>
+  <p>
+    <%= f.label :why_be_a_mentor %><br />
+    <%= f.text_area :why_be_a_mentor %>
+  </p>
+  <p>
+    <%= f.label :what_skills_bring_you %><br />
+    <%= f.text_area :what_skills_bring_you %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @mentor %> |
+<%= link_to 'Back', mentors_path %>

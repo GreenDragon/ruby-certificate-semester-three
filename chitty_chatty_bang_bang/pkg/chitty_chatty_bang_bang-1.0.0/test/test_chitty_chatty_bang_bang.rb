@@ -14,6 +14,19 @@ require "stringio"
 #  end
 #end
 
+# from gem utility_belt
+# puts "some string" | "cowsay"
+
+class String
+  def |(cmd)
+    IO.popen(cmd, 'r+') do |pipe|
+      pipe.write(self)
+      pipe.close_write
+      pipe.read
+    end
+  end
+end
+
 class TestChittyChattyBangBang < Test::Unit::TestCase
   def setup
     @chatty = ChittyChattyBangBang.new("dragon")

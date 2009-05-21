@@ -1,0 +1,102 @@
+<h1>Listing mentors</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>Zipcode</th>
+    <th>Home phone</th>
+    <th>Cell phone</th>
+    <th>Email</th>
+    <th>Race</th>
+    <th>Age</th>
+    <th>Time afternoon</th>
+    <th>Time evening</th>
+    <th>Time weekends</th>
+    <th>Exp org 1</th>
+    <th>Exp title 1</th>
+    <th>Exp start 1</th>
+    <th>Exp stop 1</th>
+    <th>Exp org 2</th>
+    <th>Exp title 2</th>
+    <th>Exp start 2</th>
+    <th>Exp stop 2</th>
+    <th>Exp org 3</th>
+    <th>Exp title 3</th>
+    <th>Exp start 3</th>
+    <th>Exp stop 3</th>
+    <th>Exp org 4</th>
+    <th>Exp title 4</th>
+    <th>Exp start 4</th>
+    <th>Exp stop 4</th>
+    <th>Worked with middle school</th>
+    <th>Two activities</th>
+    <th>Helpful support</th>
+    <th>Seattle location</th>
+    <th>Brothers sisters</th>
+    <th>Have children</th>
+    <th>Have pets</th>
+    <th>Fav subject</th>
+    <th>Hobbies</th>
+    <th>Work exp mentee</th>
+    <th>New activities mentee</th>
+    <th>Describe yourself</th>
+    <th>Why be a mentor</th>
+    <th>What skills bring you</th>
+  </tr>
+
+<% @mentors.each do |mentor| %>
+  <tr>
+    <td><%=h mentor.name %></td>
+    <td><%=h mentor.address %></td>
+    <td><%=h mentor.city %></td>
+    <td><%=h mentor.zipcode %></td>
+    <td><%=h mentor.home_phone %></td>
+    <td><%=h mentor.cell_phone %></td>
+    <td><%=h mentor.email %></td>
+    <td><%=h mentor.race %></td>
+    <td><%=h mentor.age %></td>
+    <td><%=h mentor.time_afternoon %></td>
+    <td><%=h mentor.time_evening %></td>
+    <td><%=h mentor.time_weekends %></td>
+    <td><%=h mentor.exp_org_1 %></td>
+    <td><%=h mentor.exp_title_1 %></td>
+    <td><%=h mentor.exp_start_1 %></td>
+    <td><%=h mentor.exp_stop_1 %></td>
+    <td><%=h mentor.exp_org_2 %></td>
+    <td><%=h mentor.exp_title_2 %></td>
+    <td><%=h mentor.exp_start_2 %></td>
+    <td><%=h mentor.exp_stop_2 %></td>
+    <td><%=h mentor.exp_org_3 %></td>
+    <td><%=h mentor.exp_title_3 %></td>
+    <td><%=h mentor.exp_start_3 %></td>
+    <td><%=h mentor.exp_stop_3 %></td>
+    <td><%=h mentor.exp_org_4 %></td>
+    <td><%=h mentor.exp_title_4 %></td>
+    <td><%=h mentor.exp_start_4 %></td>
+    <td><%=h mentor.exp_stop_4 %></td>
+    <td><%=h mentor.worked_with_middle_school %></td>
+    <td><%=h mentor.two_activities %></td>
+    <td><%=h mentor.helpful_support %></td>
+    <td><%=h mentor.seattle_location %></td>
+    <td><%=h mentor.brothers_sisters %></td>
+    <td><%=h mentor.have_children %></td>
+    <td><%=h mentor.have_pets %></td>
+    <td><%=h mentor.fav_subject %></td>
+    <td><%=h mentor.hobbies %></td>
+    <td><%=h mentor.work_exp_mentee %></td>
+    <td><%=h mentor.new_activities_mentee %></td>
+    <td><%=h mentor.describe_yourself %></td>
+    <td><%=h mentor.why_be_a_mentor %></td>
+    <td><%=h mentor.what_skills_bring_you %></td>
+    <td><%= link_to 'Show', mentor %></td>
+    <td><%= link_to 'Edit', edit_mentor_path(mentor) %></td>
+    <td><%= link_to 'Destroy', mentor, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New mentor', new_mentor_path %>

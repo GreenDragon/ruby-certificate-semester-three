@@ -1,0 +1,89 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  address: MyString
+  city: MyString
+  zipcode: MyString
+  home_phone: MyString
+  cell_phone: MyString
+  email: MyString
+  race: MyString
+  age: 1
+  time_afternoon: false
+  time_evening: false
+  time_weekends: false
+  exp_org_1: MyString
+  exp_title_1: MyString
+  exp_start_1: 2009-04-14 11:37:23
+  exp_stop_1: 2009-04-14 11:37:23
+  exp_org_2: MyString
+  exp_title_2: MyString
+  exp_start_2: 2009-04-14 11:37:23
+  exp_stop_2: 2009-04-14 11:37:23
+  exp_org_3: MyString
+  exp_title_3: MyString
+  exp_start_3: 2009-04-14 11:37:23
+  exp_stop_3: 2009-04-14 11:37:23
+  exp_org_4: MyString
+  exp_title_4: MyString
+  exp_start_4: 2009-04-14 11:37:23
+  exp_stop_4: 2009-04-14 11:37:23
+  worked_with_middle_school: MyText
+  two_activities: MyText
+  helpful_support: MyText
+  seattle_location: MyString
+  brothers_sisters: MyString
+  have_children: MyString
+  have_pets: MyString
+  fav_subject: MyText
+  hobbies: MyText
+  work_exp_mentee: MyText
+  new_activities_mentee: MyText
+  describe_yourself: MyText
+  why_be_a_mentor: MyText
+  what_skills_bring_you: MyText
+
+two:
+  name: MyString
+  address: MyString
+  city: MyString
+  zipcode: MyString
+  home_phone: MyString
+  cell_phone: MyString
+  email: MyString
+  race: MyString
+  age: 1
+  time_afternoon: false
+  time_evening: false
+  time_weekends: false
+  exp_org_1: MyString
+  exp_title_1: MyString
+  exp_start_1: 2009-04-14 11:37:23
+  exp_stop_1: 2009-04-14 11:37:23
+  exp_org_2: MyString
+  exp_title_2: MyString
+  exp_start_2: 2009-04-14 11:37:23
+  exp_stop_2: 2009-04-14 11:37:23
+  exp_org_3: MyString
+  exp_title_3: MyString
+  exp_start_3: 2009-04-14 11:37:23
+  exp_stop_3: 2009-04-14 11:37:23
+  exp_org_4: MyString
+  exp_title_4: MyString
+  exp_start_4: 2009-04-14 11:37:23
+  exp_stop_4: 2009-04-14 11:37:23
+  worked_with_middle_school: MyText
+  two_activities: MyText
+  helpful_support: MyText
+  seattle_location: MyString
+  brothers_sisters: MyString
+  have_children: MyString
+  have_pets: MyString
+  fav_subject: MyText
+  hobbies: MyText
+  work_exp_mentee: MyText
+  new_activities_mentee: MyText
+  describe_yourself: MyText
+  why_be_a_mentor: MyText
+  what_skills_bring_you: MyText

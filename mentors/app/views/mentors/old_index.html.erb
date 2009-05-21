@@ -1,0 +1,160 @@
+<h1>Seattle Girls' School New Mentor Application Form</h1>
+
+<hr>
+
+<% form_for(@mentor) do |f| %>
+  <%= f.error_messages %>
+
+<table>
+	<tr>
+		<th>Full Name ( First Last )</th>
+		<td><%= f.text_field :name %></td>
+	</tr>
+	<tr>
+		<th>Address</th>
+    	<td><%= f.text_field :address %></td>
+	</tr>
+  <tr>
+    <th>City</th>
+    <td><%= f.text_field :city %></td>
+  </tr>
+  <tr>
+  	<th>State</th>
+	<td><%= f.text_field :state %></td>
+  </tr>
+  <tr>
+		<th>Zip Code</th>
+    <td><%= f.text_field :zipcode %></td>
+  </tr>
+  <tr>
+    <th>Home Phone #</th>
+    <td><%= f.text_field :home_phone %></td>
+  </tr>
+  <tr>
+    <th>Cell Phone #</th>
+    <td><%= f.text_field :cell_phone %></td>
+  </tr>
+  <tr>
+    <th>E-Mail</th>
+    <td><%= f.text_field :email %></td>
+  </tr>
+  <tr>
+    <th>Ethnicity</th>
+    <td><%= f.text_field :race %></td>
+  </tr>
+  <tr>
+    <th>Age</th>
+    <td><%= f.text_field :age %></td>
+  </tr>
+</table>
+
+<hr>
+
+<p><strong>Which times during the month are you potentially available to meet with a student?</strong></p>
+
+<table>
+  <tr>
+    <th>Afternoons?</th>
+    <td><%= f.check_box :time_afternoon %></td>
+  </tr>
+  <tr>
+    <th>Evenings?</th>
+    <td><%= f.check_box :time_evening %></td>
+  </tr>
+  <tr>
+    <th>Weekends?</th>
+    <td><%= f.check_box :time_weekends %></td>
+  </tr>
+</table>
+
+<hr>
+
+<p><strong>Volunteer and Employed Experience: ( <i>Please list most recent experience first</i> )</strong></p>
+
+<table border="1">
+  <tr>
+		<td align="center"><strong>Organization or Employer</strong></td>
+		<td align="center"><strong>Job Title and Responsibilities</strong></td>
+		<td align="center"><strong>From:</strong></td>
+		<td align="center"><strong>To:</strong></td>
+	</tr>
+	<tr>
+    <td><%= f.text_field :exp_org_1 %></td>
+    <td><%= f.text_field :exp_title_1 %></td>
+    <td><%= f.date_select :exp_start_1, :order => [ :month, :year ], :start_year => Time.now.year - 15, :end_year => Time.now.year, :include_blank => true %></td>
+    <td><%= f.date_select :exp_stop_1, :order => [ :month, :year ], :start_year => Time.now.year - 15, :end_year => Time.now.year %></td>
+  </tr>
+  <tr>
+    <td><%= f.text_field :exp_org_2 %></td>
+    <td><%= f.text_field :exp_title_2 %></td>
+    <td><%= f.date_select :exp_start_2, :order => [ :month, :year ], :start_year => Time.now.year - 15, :end_year => Time.now.year, :include_blank => true %></td>
+    <td><%= f.date_select :exp_stop_2, :order => [ :month, :year ], :start_year => Time.now.year - 15, :end_year => Time.now.year, :include_blank => true %></td>
+  </tr>
+  <tr>
+    <td><%= f.text_field :exp_org_3 %></td>
+    <td><%= f.text_field :exp_title_3 %></td>
+    <td><%= f.date_select :exp_start_3, :order => [ :month, :year ], :start_year => Time.now.year - 15, :end_year => Time.now.year, :include_blank => true %></td>
+    <td><%= f.date_select :exp_stop_3, :order => [ :month, :year ], :start_year => Time.now.year - 15, :end_year => Time.now.year, :include_blank => true %></td>
+  </tr>
+  <tr>
+    <td><%= f.text_field :exp_org_4 %></td>
+    <td><%= f.text_field :exp_title_4 %></td>
+    <td><%= f.date_select :exp_start_4, :order => [ :month, :year ], :start_year => Time.now.year - 15, :end_year => Time.now.year, :include_blank => true %></td>
+    <td><%= f.date_select :exp_stop_4, :order => [ :month, :year ], :start_year => Time.now.year - 15, :end_year => Time.now.year, :include_blank => true %></td>
+  </tr>
+</table>
+
+<hr>
+
+<p><strong>Have you worked with or do you know any girls in middle school?</strong></p>
+<%= f.text_area :worked_with_middle_school, :cols => 70, :rows => 1  %>
+
+<p><strong>What were two activities you liked to do when you were 11-13 years old?</strong></p>
+<%= f.text_area :two_activities, :cols => 70, :rows => 1 %>
+
+<p><strong>What kind of support would have been helpful for you when you were in middle school?</strong></p>
+<%= f.text_area :helpful_support, :cols => 70, :rows => 2 %>
+   
+<p><strong>Which part of Seattle do you live in?</strong></p>
+<%= f.text_field :seattle_location, :size => 80 %>
+
+<p><strong>Do you have any brothers and/or sisters?</strong></p>
+<%= f.text_field :brothers_sisters, :size => 80 %>
+
+<p><strong>Do you have any children?</strong></p>
+<%= f.text_field :have_children, :size => 80 %>
+
+<p><strong>Do you have any pets?</strong></p>
+<%= f.text_field :have_pets, :size => 80 %>
+
+<p><strong>What was your favorite subject at school ( science, math, writing, music, language, arts, etc. )?</strong></p>
+<%= f.text_area :fav_subject, :cols => 70, :rows => 1 %>
+
+<p><strong>What are your hobbies and interests?</strong></p>
+<%= f.text_area :hobbies, :cols => 70, :rows => 2 %>
+
+<p><strong>Write about your current or previous work experience that you could share with your mentee:</strong></p>
+<%= f.text_area :work_exp_mentee, :cols => 70, :rows => 2 %>
+
+<p><strong>What new activities would you be interested in doing with your mentee (things you haven't done yet yet would like to...)?</strong></p>
+<%= f.text_area :new_activities_mentee, :cols => 70, :rows => 2 %>
+
+<p><strong>How would you describe yourself? Outspoken, introvert, adventurous, mellow, arty, outdoorsy, etc. ...</strong></p>
+<%= f.text_area :describe_yourself, :cols => 70, :rows => 1 %>
+
+<p><strong>Why do you want to be a Mentor?</strong></p>
+<%= f.text_area :why_be_a_mentor, :cols => 70, :rows => 4 %>
+
+<p><strong>What skills do you bring as a Mentor?</strong></p>
+<%= f.text_area :what_skills_bring_you, :cols => 70, :rows => 3 %>
+
+<p>&nbsp;</p>
+
+<%= recaptcha_tags %>
+
+<p>&nbsp;</p>
+<%= f.submit 'Submit' %>
+
+<% end %>
+
+<!-- link_to 'Back', mentors_path -->

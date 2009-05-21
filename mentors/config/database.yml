@@ -1,0 +1,25 @@
+# SQLite version 3.x
+#   gem install mysql-ruby (not necessary on OS X Leopard)
+development:
+  adapter: mysql
+  database: mentors_development
+  encoding: utf8
+  username: mentors_app
+  password: 
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: mysql
+  database: mentors_test
+  username: mentors_app
+  encoding: utf8
+  password: 
+
+production:
+  adapter: mysql
+  database: mentors_production
+  encoding: utf8
+  username: mentors_app
+  password: 
