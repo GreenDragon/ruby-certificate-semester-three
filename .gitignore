@@ -13,3 +13,4 @@
 *.new.spm
 *.new.spp
 secrets.rb
+*.mentors.sgs.*
