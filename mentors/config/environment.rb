@@ -21,8 +21,12 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "geokit"
   config.gem "thoughtbot-factory_girl",
-             :lib    => "factory_girl",
-             :source => "http://gems.github.com"
+             :lib     => "factory_girl",
+             :source  => "http://gems.github.com"
+
+  config.gem "thoughtbot-shoulda",
+             :lib     => "shoulda/rails",
+             :source  => "http://gems.github.com"
 
   # OK WTF, maybe I replace you with spreadsheet
   # config.gem "spreadsheet/excel"
