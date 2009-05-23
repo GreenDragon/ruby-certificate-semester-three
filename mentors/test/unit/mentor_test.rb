@@ -3,6 +3,8 @@ require 'test_helper'
 class MentorTest < ActiveSupport::TestCase
   def setup
     @mentor = Mentor.find(:first)
+    @params = { :address => "123 Some St.", :city => "Seattle",
+               :state => "WA", :zipcode => "98144" }
   end
 
   should_validate_presence_of :name, :address, :city, :state, :zipcode,
@@ -13,4 +15,11 @@ class MentorTest < ActiveSupport::TestCase
     :describe_yourself, :why_be_a_mentor, :what_skills_bring_you
 
   should_validate_numericality_of :age
+
+  test "should build geocode string" do
+    actual = Mentor.create(@params).address_string
+    expected = "123 Some St., Seattle, WA, USA, 98144"
+
+    assert_equal expected, actual
+  end
 end
