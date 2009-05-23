@@ -3,8 +3,6 @@ require 'test_helper'
 class MentorsControllerTest < ActionController::TestCase
   def setup
     @valid_mentor_attributes = Factory.attributes_for(:mentor)
-    # @valid_mentor_instance = Factory.build(:mentor)
-    # @valid_mentor = Factory.create(:mentor)
   end
 
   # I am redirecting index to new by default, there is no index
@@ -47,5 +45,25 @@ class MentorsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to mentors_path
+  end
+
+  test "should raise Geocoder error when address malformed" do
+    post :create, :mentor => {
+      :address  => "String",
+      :city     => "String",
+      :state    => "String",
+      :zipcode  => "String"
+    }
+
+    assert_match(/Could not Geocode address/, @response.body)
+  end
+
+  test "should geocode known address properly" do
+    assert_difference('Mentor.count') do
+      post :create, :mentor =>  @valid_mentor_attributes
+    end
+
+    assert_not_nil Mentor.find(:last).lat
+    assert_not_nil Mentor.find(:last).lng
   end
 end

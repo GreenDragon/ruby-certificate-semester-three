@@ -26,6 +26,8 @@ Rails::Initializer.run do |config|
 
   # OK WTF, maybe I replace you with spreadsheet
   # config.gem "spreadsheet/excel"
+  # Hrmmm, even dead_simple_reports loads spreadsheet/excel from
+  # the controller level, awesome
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
