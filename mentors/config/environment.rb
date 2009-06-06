@@ -31,11 +31,6 @@ Rails::Initializer.run do |config|
              :lib     => "shoulda/rails",
              :source  => "http://gems.github.com"
 
-  # OK WTF, maybe I replace you with spreadsheet
-  # config.gem "spreadsheet/excel"
-  # Hrmmm, even dead_simple_reports loads spreadsheet/excel from
-  # the controller level, awesome
-
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -58,3 +53,5 @@ end
 
 # Include API keys via secrets file
 require File.join(File.dirname(__FILE__), 'secrets')
+
+Mime::Type.register "application/vnd.ms-excel", :xls

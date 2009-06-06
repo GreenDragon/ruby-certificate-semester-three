@@ -2,7 +2,9 @@ require "spreadsheet/excel"
 include Spreadsheet
 
 class ReportsController < ApplicationController
-	def excel
+  include ReportsHelper
+	
+  def excel
 		@mentors = Mentor.find(:all, :order => :name)
 		date = Time.now.strftime("%Y.%m.%d_%H.%M.%S")
 
@@ -13,6 +15,19 @@ class ReportsController < ApplicationController
 				:filename => "mentors_#{date}.xls"
 		end
 	end
+
+  def mentor_report
+    @mentors = Mentor.find(:all, :order => :name)
+    date = Time.now.strftime("%Y.%m.%d_%H.%M.%S")
+
+    # Hey, if I say call it .xls, then frakken call it that! Not .htm
+    unless @mentors.empty?
+      send_data create_mentor_excel(@mentors),
+        :content_type => "application/vnd.ms-excel",
+        :filename => "mentors_#{date}.xls"
+    end
+  end
+
 
 private
 

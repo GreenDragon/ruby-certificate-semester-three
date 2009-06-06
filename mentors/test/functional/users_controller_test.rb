@@ -1,11 +1,6 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
-  end
-
   context "When getting new user view" do
     setup { get :new }
 
@@ -21,9 +16,10 @@ class UsersControllerTest < ActionController::TestCase
       post :create, :user => Factory.attributes_for(:valid_user)
     end
 
+    should_set_the_flash_to "Account registered!"
+
     should_respond_with :redirect
     should_route :get, "/reports", :controller => :reports, :action => :index
-    should_set_the_flash_to "Account registered!"
   end
 
   context "Given invalid attributes when creating a new user" do
