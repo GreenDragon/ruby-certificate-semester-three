@@ -296,7 +296,7 @@ class ActsAsMappableTest < ActiveSupport::TestCase #:nodoc: all
   end  
   
   def test_ip_geocoded_distance_column_in_select
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.find(:all, :origin => LOCATION_A_IP, :order => "distance ASC")
     assert_equal 6, locations.size
     assert_equal 0, @loc_a.distance_to(locations.first)
@@ -304,62 +304,62 @@ class ActsAsMappableTest < ActiveSupport::TestCase #:nodoc: all
   end
   
   def test_ip_geocoded_find_with_distance_condition
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.find(:all, :origin => LOCATION_A_IP, :conditions => "distance < 3.97")
     assert_equal 5, locations.size
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.count(:origin => LOCATION_A_IP, :conditions => "distance < 3.97")
     assert_equal 5, locations
   end 
   
   def test_ip_geocoded_find_within
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.find_within(3.97, :origin => LOCATION_A_IP)
     assert_equal 5, locations.size    
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.count_within(3.97, :origin => LOCATION_A_IP)
     assert_equal 5, locations
   end
   
   def test_ip_geocoded_find_with_compound_condition
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.find(:all, :origin => LOCATION_A_IP, :conditions => "distance < 5 and city = 'Coppell'")
     assert_equal 2, locations.size
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.count(:origin => LOCATION_A_IP, :conditions => "distance < 5 and city = 'Coppell'")
     assert_equal 2, locations
   end
   
   def test_ip_geocoded_find_with_secure_compound_condition
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.find(:all, :origin => LOCATION_A_IP, :conditions => ["distance < ? and city = ?", 5, 'Coppell'])
     assert_equal 2, locations.size
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.count(:origin => LOCATION_A_IP, :conditions => ["distance < ? and city = ?", 5, 'Coppell'])
     assert_equal 2, locations
   end
   
   def test_ip_geocoded_find_beyond
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.find_beyond(3.95, :origin => LOCATION_A_IP)
     assert_equal 1, locations.size    
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     locations = Location.count_beyond(3.95, :origin => LOCATION_A_IP)
     assert_equal 1, locations
   end
   
   def test_ip_geocoded_find_nearest
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     assert_equal @loc_a, Location.find_nearest(:origin => LOCATION_A_IP)
   end
   
   def test_ip_geocoded_find_farthest
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with(LOCATION_A_IP).returns(@location_a)
     assert_equal @loc_e, Location.find_farthest(:origin => LOCATION_A_IP)
   end
   
   def test_ip_geocoder_exception
-    GeoKit::Geocoders::IpGeocoder.expects(:geocode).with('127.0.0.1').returns(GeoKit::GeoLoc.new)
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).with('127.0.0.1').returns(GeoKit::GeoLoc.new)
     assert_raises GeoKit::Geocoders::GeocodeError do
       Location.find_farthest(:origin => '127.0.0.1')
     end
@@ -503,66 +503,6 @@ class ActsAsMappableTest < ActiveSupport::TestCase #:nodoc: all
     store.save
     assert store.new_record?
     assert_equal 1, store.errors.size
-  end
-  
-  
-  
-  
-  # test the augment_conditions helper
-  def test_augment_conditions_with_an_empty_string
-    assert_equal 'distance < 5', Location.send(:augment_conditions, '', 'distance < 5')    
-  end
-
-  def test_augment_conditions_with_a_conditional_string
-    assert_equal 'my_filter=my_value AND distance < 5', Location.send(:augment_conditions, 'my_filter=my_value', 'distance < 5')    
-  end
-  
-  def test_augment_conditions_with_an_empty_array
-    assert_equal ['distance < 5'], Location.send(:augment_conditions, [], 'distance < 5')    
-  end
-
-  def test_augment_conditions_with_a_simple_array
-    assert_equal ['my_filter=my_value AND distance < 5'], Location.send(:augment_conditions, ['my_filter=my_value'], 'distance < 5')    
-  end
-
-  def test_augment_conditions_with_a_prepared_value_array
-    assert_equal ['my_filter=? AND distance < 5', 10], Location.send(:augment_conditions, ['my_filter=?', 10], 'distance < 5')    
-  end
-  
-  def test_augment_conditions_should_not_modify_an_empty_conditional_array
-    conditions = []
-    Location.send(:augment_conditions, conditions, 'distance < 5')    
-    assert_equal [], conditions
-  end
-
-  def test_augment_conditions_with_simple_conditional_should_not_modify_the_conditional_array
-    conditions = ['my_filter=my_value']
-    Location.send(:augment_conditions, conditions, 'distance < 5')    
-    assert_equal ['my_filter=my_value'], conditions
-  end
-
-  def test_augment_conditions_with_an_empty_hash
-    assert_equal 'distance < 5', Location.send(:augment_conditions, {}, 'distance < 5')    
-  end
-
-  def test_augment_conditions_with_a_simple_hash
-    assert_equal "`locations`.`my_filter` = 'my_value' AND distance < 5", Location.send(:augment_conditions, {:my_filter => 'my_value'}, 'distance < 5')    
-  end
-
-  def test_augment_conditions_with_a_mixed_hash
-    # assert_equal "`locations`.`my_filter` = 'my_value' AND `locations`.`my_filter2` = 200 AND distance < 5",
-    result = Location.send(:augment_conditions, {:my_filter => 'my_value', :my_filter2 => 200}, 'distance < 5')    
-    #the order of the hash, at least in ruby < 1.9, is not guaranteed
-    result =~ /#{Regexp.escape("`locations`.`my_filter` = 'my_value'")}/
-    result =~ /#{Regexp.escape("`locations`.`my_filter2` = 200")}/
-    result =~ /#{Regexp.escape(" AND distance < 5")}/
-  end
-  
-  def test_augment_conditions_with_a_simple_conditional_should_not_modify_the_conditional_hash
-    conditions = {:my_filter => 'my_value'}
-    Location.send(:augment_conditions, conditions, 'distance < 5')
-    orig_conditions = {:my_filter => 'my_value'}
-    assert_equal orig_conditions, conditions
   end
   
   # Test :through

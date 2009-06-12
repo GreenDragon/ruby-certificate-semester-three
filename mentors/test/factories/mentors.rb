@@ -42,4 +42,39 @@ Factory.define :mentor do |m|
   m.describe_yourself 'Describe Yourself in 140 Characters'
   m.why_be_a_mentor 'Why A Mentor Be You'
   m.what_skills_bring_you 'What Skills Bring You Young Jedi'
+  m.lat '47.5999225'
+  m.lng '-122.2973159'
+end
+
+Factory.define :good_mentor, :parent => :mentor, :class => Mentor do |g|
+  g.email 'good@mentor.net'
+end
+
+Factory.define :bad_mentor, :class => Mentor do |m|
+  m.name 'Epic Fail'
+  m.address 'nil'
+  m.city 'nil'
+  m.state 'nil'
+  m.zipcode 'nil'
+  m.home_phone '206.555.1212'
+  m.cell_phone '(206) 555-1212'
+  m.email 'epic@fail.com'
+  m.age '45'
+  m.exp_org_1 'Exp Org 1'
+  m.exp_title_1 'Exp Org 1 Title'
+  m.exp_start_1 '2009-04-01 12:00:00'
+  m.exp_stop_1 '2009-06-06 12:00:00'
+  m.worked_with_middle_school 'Working With Middle School'
+  m.two_activities 'Two Activities'
+  m.helpful_support 'Helpful Support'
+  m.brothers_sisters 'Brothers Sisters'
+  m.have_children 'Have Children?'
+  m.have_pets 'Have Pets?'
+  m.fav_subject 'Fav Subject'
+  m.hobbies 'Hobbies'
+  m.work_exp_mentee 'Work Experience Mentee'
+  m.new_activities_mentee 'New Activities Mentee'
+  m.describe_yourself 'Describe Yourself in 140 Characters'
+  m.why_be_a_mentor 'Why A Mentor Be You'
+  m.what_skills_bring_you 'What Skills Bring You Young Jedi'
 end

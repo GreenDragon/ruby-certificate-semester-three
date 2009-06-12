@@ -22,3 +22,7 @@ Factory.define :referral do |r|
   # r.patience '1'
   # r.additional_comments 'MyText'
 end
+
+Factory.define :good_referral, :parent => :referral do |g|
+  g.email 'gfirst@glast.org'
+end

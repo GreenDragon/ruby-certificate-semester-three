@@ -5,6 +5,11 @@ class ReportsControllerTest < ActionController::TestCase
     @valid_mentor_attributes = Factory.attributes_for(:mentor)
   end
 
+  test "should get index" do
+    get :index
+    assert_response :success
+  end
+
   test "should get excel report" do
     get :excel
     assert_response :success
@@ -13,7 +18,7 @@ class ReportsControllerTest < ActionController::TestCase
   test "should get mentors report" do
     Mentor.create!(@valid_mentor_attributes)
 
-    get :mentor_report
+    get :mentors_excel
     assert_response :success
     assert_match(/What Skills Bring You/, @response.body)
     assert_match(/First Last/, @response.body)

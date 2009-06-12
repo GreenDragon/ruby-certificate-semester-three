@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+admin:
+  id: 1
+  login: admin
+  email: admin@x.com
+  crypted_password: 3c8284924f2604f2a3d02bc4e6cf750e1bfbad83fa3a72be0f9bd1fd83354df80a9cb817a9cb65c32d1f4ed5ae788d73b2e9379cf727c02615cff0b1ae9a4915
+  password_salt: pQsoXRG7NiMF29k0Xvtz

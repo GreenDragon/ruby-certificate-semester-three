@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ReferralsControllerTest < ActionController::TestCase
   def setup
+    @referral = Factory.create(:good_referral)
     @valid_referral_attributes = Factory.attributes_for(:referral)
   end
 
@@ -25,23 +26,23 @@ class ReferralsControllerTest < ActionController::TestCase
   end
 
   test "should show referral" do
-    get :show, :id => referrals(:one).to_param
+    get :show, :id => @referral.id.to_param
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, :id => referrals(:one).to_param
+    get :edit, :id => @referral.id.to_param
     assert_response :success
   end
 
   test "should update referral" do
-    put :update, :id => referrals(:one).to_param, :referral => { }
+    put :update, :id => @referral.id.to_param, :referral => { }
     assert_redirected_to referral_path(assigns(:referral))
   end
 
   test "should destroy referral" do
     assert_difference('Referral.count', -1) do
-      delete :destroy, :id => referrals(:one).to_param
+      delete :destroy, :id => @referral.id.to_param
     end
 
     assert_redirected_to referrals_path

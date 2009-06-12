@@ -1,0 +1,27 @@
+Bootstrap admin user
+  User listing
+    admin can create new users
+    admin can delete users
+
+User login
+  User can see reports
+  User can change password
+
+Guests can not create accounts
+
+Reports
+  Show mentors ( count )
+    html|xls
+    show closest students
+  Show referrals ( count )
+    html|xls
+
+Mentors
+  On new mentor
+    Send e-mail to users
+    Send referral invites
+
+Referrals
+  On new referral
+    Send e-mail to users
+    Thank referrer 

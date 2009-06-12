@@ -13,17 +13,19 @@ class Mentor < ActiveRecord::Base
 
 	validates_numericality_of	:age
 
+  validates_uniqueness_of   :email
+
 	def address_string
 		"#{self.address}, #{self.city}, #{self.state}, USA, #{self.zipcode}"
 	end
 
-	acts_as_mappable	:auto_geocode => {
-							:field => :address_string,
-							:error_message => 'Could not geocode address'
-						}
-	
-	before_validation	:geocode_address
+  before_validation_on_create :geocode_address
 
+	acts_as_mappable :auto_geocode => {
+    :field          => :address_string,
+    :error_message  => 'Could not Geocode address'
+  }
+	
 private
 	def geocode_address
 		geo=GeoKit::Geocoders::MultiGeocoder.geocode(address_string)

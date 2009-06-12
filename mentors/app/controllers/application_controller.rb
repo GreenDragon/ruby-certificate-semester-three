@@ -17,7 +17,8 @@ private
 
   def current_user
     return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.user
+    # railscasts uses record vs user from authlogic demo
+    @current_user = current_user_session && current_user_session.record
   end
 
   def require_user

@@ -55,3 +55,24 @@ a:hover { color: #fff; background-color:#000; }
 th {
 	text-align:	right;
 }
+
+#user_nav {
+  float: right;
+  font-size: 12px;
+}
+
+#flash_notice, #flash_error {
+  padding: 5px 8px;
+  margin: 10px 0;
+  width: 70%;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+#flash_error {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}

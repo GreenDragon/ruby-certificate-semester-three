@@ -3,6 +3,9 @@ include Spreadsheet
 
 class ReportsController < ApplicationController
   include ReportsHelper
+
+  def index
+  end
 	
   def excel
 		@mentors = Mentor.find(:all, :order => :name)
@@ -16,7 +19,7 @@ class ReportsController < ApplicationController
 		end
 	end
 
-  def mentor_report
+  def mentors_excel
     @mentors = Mentor.find(:all, :order => :name)
     date = Time.now.strftime("%Y.%m.%d_%H.%M.%S")
 
@@ -26,6 +29,23 @@ class ReportsController < ApplicationController
         :content_type => "application/vnd.ms-excel",
         :filename => "mentors_#{date}.xls"
     end
+
+    # see also: http://blog.edendevelopment.cookies.uk/2009/02/03/exporting-from-rails-to-excel/
+
+    #def index
+    #  @tasks = Task.find(:all)
+
+    #  respond_to do |format|
+    #    format.html # index.html.erb
+    #    format.xls {
+    #      require 'iconv'
+    #      converter = Iconv.new('ISO-8859-15//IGNORE//TRANSLIT','UTF-8')
+    #      send_data(converter.iconv(generate_xls(@tasks)),
+    #        :filename => 'all_tasks.xls',
+    #        :type => 'application/vnd.ms-excel')
+    #    }
+    #  end
+    #end
   end
 
 

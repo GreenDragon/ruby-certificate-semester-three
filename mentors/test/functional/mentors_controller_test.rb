@@ -2,7 +2,8 @@ require 'test_helper'
 
 class MentorsControllerTest < ActionController::TestCase
   def setup
-    @valid_mentor_attributes = Factory.attributes_for(:mentor)
+    @mentor = Factory.create(:mentor)
+    @valid_mentor_attributes = Factory.attributes_for(:good_mentor)
   end
 
   # I am redirecting index to new by default, there is no index
@@ -25,35 +26,32 @@ class MentorsControllerTest < ActionController::TestCase
   end
 
   test "should show mentor" do
-    get :show, :id => mentors(:one).to_param
+    get :show, :id => @mentor.id.to_param
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, :id => mentors(:one).to_param
+    get :edit, :id => @mentor.id.to_param
     assert_response :success
   end
 
   test "should update mentor" do
-    put :update, :id => mentors(:one).to_param, :mentor => { }
+    put :update, :id => @mentor.id.to_param, :mentor => { }
     assert_redirected_to mentor_path(assigns(:mentor))
   end
 
   test "should destroy mentor" do
+    assert post :create, :mentor =>  @valid_mentor_attributes
     assert_difference('Mentor.count', -1) do
-      delete :destroy, :id => mentors(:one).to_param
+      delete :destroy, :id => @mentor.id.to_param
     end
 
     assert_redirected_to mentors_path
   end
 
   test "should raise Geocoder error when address malformed" do
-    post :create, :mentor => {
-      :address  => "String",
-      :city     => "String",
-      :state    => "String",
-      :zipcode  => "String"
-    }
+    @invalid_mentor_attributes = Factory.attributes_for(:bad_mentor)
+    post :create, :mentor => @invalid_mentor_attributes
 
     assert_match(/Could not Geocode address/, @response.body)
   end

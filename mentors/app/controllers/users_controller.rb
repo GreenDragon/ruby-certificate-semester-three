@@ -10,18 +10,18 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "Account registered!"
-      redirect_back_or_default users_url
+      redirect_back_or_default reports_url
     else
       render :action => :new
     end
   end
 
   def show
-    @user = @curent_user
+    @user = current_user
   end
 
   def edit
-    @user = @current_user
+    @user = current_user
   end
 
   def index
@@ -29,10 +29,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = @current_user
+    @user = current_user
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
-      redirect_to users_url
+      redirect_to reports_url
     else
       render :action => :edit
     end

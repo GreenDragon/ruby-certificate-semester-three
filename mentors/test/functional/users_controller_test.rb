@@ -31,4 +31,6 @@ class UsersControllerTest < ActionController::TestCase
     should_not_set_the_flash
   end
 
+  # test edit current user
+  # should update and redirect to reports
 end

@@ -1,0 +1,6 @@
+Successful login, reports index missing
+
+Unless authenticated, reports index empty
+If authenticated, no reports access, warning
+
+Factory.build does memory vs SQL
