@@ -3,15 +3,11 @@ require 'test_helper'
 class ReportsControllerTest < ActionController::TestCase
   def setup
     @valid_mentor_attributes = Factory.attributes_for(:mentor)
+    @valid_referral_attributes = Factory.attributes_for(:referral)
   end
 
   test "should get index" do
     get :index
-    assert_response :success
-  end
-
-  test "should get excel report" do
-    get :excel
     assert_response :success
   end
 
@@ -24,5 +20,13 @@ class ReportsControllerTest < ActionController::TestCase
     assert_match(/First Last/, @response.body)
     assert_match(/2706 S. Jackson Street/, @response.body)
     assert_match(/first\@last\.com/, @response.body)
+  end
+
+  test "should get referrals report" do
+    Referral.create!(@valid_referral_attributes)
+
+    get :referrals_excel
+
+    assert_response :success
   end
 end

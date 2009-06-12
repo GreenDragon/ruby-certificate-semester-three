@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.reports "reports", :controller => "reports", :action => "index"
   map.mentors_excel "mentors_excel", :controller => "reports", :action => "mentors_excel"
+  map.referrals_excel "referrals_excel", :controller => "reports", :action => "referrals_excel"
 
   #map.resource  :user_session
 
