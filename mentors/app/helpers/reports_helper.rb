@@ -63,7 +63,7 @@ private
 
         fields.each do |field|
           if o.send(field).class == TrueClass
-            str << "<td>#{o.send(field)}</td>\n"
+            str << "<td>#{o.send(field).to_s}</td>\n"
           elsif o.send(field).class == ActiveSupport::TimeWithZone
             if o.send(field)
               str << "<td>#{o.send(field).localtime.strftime("%Y/%m/%d")}</td     >\n"

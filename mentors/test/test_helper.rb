@@ -3,6 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 require 'redgreen'
 require 'shoulda/rails'
+require 'authlogic/test_case'
 # require 'fakeweb'
 
 class ActiveSupport::TestCase

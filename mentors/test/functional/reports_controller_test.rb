@@ -28,5 +28,9 @@ class ReportsControllerTest < ActionController::TestCase
     get :referrals_excel
 
     assert_response :success
+    assert_match(/RFirst RLast/, @response.body)
+    assert_match(/Seattle/, @response.body)
+    assert_match(/rfirst@rlast.com/, @response.body)
+    assert_match(/MyText/, @response.body)
   end
 end

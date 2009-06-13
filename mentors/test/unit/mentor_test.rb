@@ -12,7 +12,7 @@ private
 end
 
 class MentorTest < ActiveSupport::TestCase
-  include RR::Adapters::TestUnit
+  # include RR::Adapters::TestUnit
   def setup
     @mentor = Factory.create(:mentor)
     @params = { :address => "2706 S. Jackson St.", :city => "Seattle",
